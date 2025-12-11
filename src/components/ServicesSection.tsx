@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Calculator,
   LineChart,
@@ -7,6 +7,7 @@ import {
   GraduationCap,
   ArrowUpRight,
 } from "lucide-react";
+import QuoteModal from "@/components/QuoteModal";
 
 const services = [
   {
@@ -55,6 +56,7 @@ const services = [
 const ServicesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   return (
     <section
@@ -125,19 +127,22 @@ const ServicesSection = () => {
               </ul>
 
               {/* CTA */}
-              <a
-                href="https://wa.me/244923456789"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => setIsQuoteModalOpen(true)}
                 className="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors"
               >
                 Solicitar Orçamento
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>
       </div>
+
+      <QuoteModal
+        isOpen={isQuoteModalOpen}
+        onClose={() => setIsQuoteModalOpen(false)}
+      />
     </section>
   );
 };
