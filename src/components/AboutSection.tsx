@@ -101,51 +101,44 @@ const AboutSection = () => {
           ))}
         </motion.div>
 
-        {/* Media Section */}
+        {/* Media Section - Overlapping Layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="grid lg:grid-cols-2 gap-6"
+          className="relative"
         >
-          {/* Large Image */}
-          <div className="relative rounded-2xl overflow-hidden group h-[400px]">
-            <img
-              src={aboutImage}
-              alt="Equipa NGUZU Consultoria"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent" />
-          </div>
-
-          {/* Video Card */}
-          <div className="relative rounded-2xl overflow-hidden group h-[400px]">
-            <img
-              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80"
-              alt="Vídeo institucional"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-primary-dark/40 to-transparent flex items-center justify-center">
-              <a
-                href="#"
-                className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-all duration-300 hover:scale-110 shadow-glow"
-              >
-                <svg
-                  className="w-8 h-8 text-accent-foreground ml-1"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </a>
+          <div className="flex flex-col lg:flex-row items-center lg:items-end gap-6 lg:gap-0">
+            {/* Large Image - Main */}
+            <div className="relative rounded-2xl overflow-hidden group w-full lg:w-[65%] h-[350px] lg:h-[450px] shadow-xl">
+              <img
+                src={aboutImage}
+                alt="Equipa NGUZU Consultoria"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
             </div>
-            <div className="absolute bottom-6 left-6 right-6">
-              <h3 className="text-primary-foreground font-semibold text-lg">
-                Conheça a Nossa História
-              </h3>
-              <p className="text-primary-foreground/70 text-sm">
-                Veja como transformamos negócios em Angola
-              </p>
+
+            {/* Video Card - Overlapping */}
+            <div className="relative lg:absolute lg:right-0 lg:bottom-8 w-full lg:w-[45%] h-[280px] lg:h-[320px] rounded-2xl overflow-hidden group shadow-2xl border-4 border-background">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80"
+                alt="Vídeo institucional"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-primary-dark/30 flex items-center justify-center">
+                <a
+                  href="#"
+                  className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-all duration-300 hover:scale-110 shadow-glow"
+                >
+                  <svg
+                    className="w-6 h-6 lg:w-8 lg:h-8 text-accent-foreground ml-1"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>

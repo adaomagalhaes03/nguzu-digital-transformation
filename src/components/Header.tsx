@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import logoNguzu from "@/assets/logo-nguzu.jpg";
+import QuoteModal from "@/components/QuoteModal";
 
 const navLinks = [
   { name: "Início", href: "#hero" },
   { name: "Sobre Nós", href: "#about" },
   { name: "Serviços", href: "#services" },
   { name: "Equipa", href: "#team" },
-  { name: "Contacto", href: "#footer" },
+  { name: "Contacto", href: "#contact" },
 ];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,15 +86,13 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
-            <a
-              href="https://wa.me/244923456789"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setIsQuoteModalOpen(true)}
               className="flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg font-semibold hover:bg-accent/90 transition-all duration-300 hover:shadow-glow"
             >
               <Phone className="w-4 h-4" />
               Solicitar Orçamento
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -129,17 +129,23 @@ const Header = () => {
               {link.name}
             </a>
           ))}
-          <a
-            href="https://wa.me/244923456789"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => {
+              setIsQuoteModalOpen(true);
+              setIsOpen(false);
+            }}
             className="flex items-center justify-center gap-2 bg-accent text-accent-foreground px-5 py-3 rounded-lg font-semibold mt-4"
           >
             <Phone className="w-4 h-4" />
             Solicitar Orçamento
-          </a>
+          </button>
         </nav>
       </div>
+
+      <QuoteModal
+        isOpen={isQuoteModalOpen}
+        onClose={() => setIsQuoteModalOpen(false)}
+      />
     </header>
   );
 };
